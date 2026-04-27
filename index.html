@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>JOAD Core | Soluciones Digitales</title>
+</head>
+<body>
+    <header id="header-main">
+        <nav class="navbar">
+            <div id="empresa">JOAD Core</div>
+
+            <ul class="nav-links">
+                <li><a href="#catalogo">Services</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="burger" onclick="toggleMenu()">
+                <span class="linea"></span>
+                <span class="linea"></span>
+                <span class="linea"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero-section" class="articulo">
+            <h1 id="hero">I turn <span class="resaltar">ideas</span> into robust digital <span class="resaltar">solutions</span>.</h1>
+        </section>
+            
+        <section id="catalogo" class="articulo">
+            <h2 class="titulo-seccion">SERVICES</h2>
+            <div class="grid-servicios">
+                <div class="card">
+                    <i class="fa-solid fa-code icon-card"></i>
+                    <h4 class="card-title">Web Development</h4>
+                    <div class="content">
+                        <p>Landing pages, e-commerce, web applications</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-window-restore icon-card"></i>
+                    <h4 class="card-title">Custom Software</h4>
+                    <div class="content">
+                        <p>Logical solutions, process automation</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-server icon-card"></i>
+                    <h4 class="card-title">Maintenance</h4>
+                    <div class="content">
+                        <p>Updates and performance improvements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article id="about-us" class="articulo">
+            <h2 class="titulo-seccion">ABOUT US</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto;">
+                Experts in transforming analog processes into high-impact digital experiences.
+            </p>
+        </article>
+        
+        <article id="contact" class="articulo">
+            <h2 class="titulo-seccion">CONTACT</h2>
+            <div id="enlaces">
+                <div class="content clicable" onclick="irGithub()">
+                    <p><i class="fa-brands fa-github"></i><br>GITHUB</p>
+                </div>
+                <div class="content clicable" onclick="irInstagram()">
+                    <p><i class="fa-brands fa-instagram"></i><br>INSTAGRAM</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
