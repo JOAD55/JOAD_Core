@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>JOAD Core | Soluciones Digitales</title>
@@ -13,7 +13,7 @@
 <body>
     <header id="header-main">
         <nav class="navbar">
-            <div id="empresa">JOAD Core</div>
+            <div id="empresa">JOAD<span class="dot">.</span>Core</div>
 
             <ul class="nav-links">
                 <li><a href="#catalogo">Services</a></li>
@@ -21,7 +21,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <div class="burger" onclick="toggleMenu()">
+            <div class="burger" onclick="toggleMenu()" aria-label="Menú">
                 <span class="linea"></span>
                 <span class="linea"></span>
                 <span class="linea"></span>
@@ -31,58 +31,138 @@
 
     <main>
         <section id="hero-section" class="articulo">
-            <h1 id="hero">I turn <span class="resaltar">ideas</span> into robust digital <span class="resaltar">solutions</span>.</h1>
+            <p class="hero-tag">— Desarrollo de Software</p>
+            <h1 id="hero">
+                Convierto <span class="resaltar">ideas</span><br>
+                en soluciones<br>
+                digitales <span class="resaltar">robustas</span>.
+            </h1>
+            <div class="hero-cta">
+                <a href="#catalogo" class="btn-primary">Ver servicios</a>
+                <a href="#contact" class="btn-ghost">Contactar</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num">+10</span>
+                    <span class="stat-label">Proyectos</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">.NET</span>
+                    <span class="stat-label">Stack principal</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">MX</span>
+                    <span class="stat-label">Base</span>
+                </div>
+            </div>
         </section>
-            
+
         <section id="catalogo" class="articulo">
-            <h2 class="titulo-seccion">SERVICES</h2>
+            <div class="seccion-header">
+                <span class="seccion-num">01</span>
+                <h2 class="titulo-seccion">SERVICES</h2>
+            </div>
             <div class="grid-servicios">
                 <div class="card">
-                    <i class="fa-solid fa-code icon-card"></i>
+                    <div class="card-icon-wrap">
+                        <i class="fa-solid fa-code icon-card"></i>
+                    </div>
                     <h4 class="card-title">Web Development</h4>
-                    <div class="content">
-                        <p>Landing pages, e-commerce, web applications</p>
-                    </div>
+                    <p class="card-desc">Landing pages, e-commerce, aplicaciones web a medida.</p>
+                    <span class="card-tag">HTML · CSS · JS</span>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-window-restore icon-card"></i>
+                    <div class="card-icon-wrap">
+                        <i class="fa-solid fa-window-restore icon-card"></i>
+                    </div>
                     <h4 class="card-title">Custom Software</h4>
-                    <div class="content">
-                        <p>Logical solutions, process automation</p>
-                    </div>
+                    <p class="card-desc">Soluciones lógicas, automatización de procesos empresariales.</p>
+                    <span class="card-tag">.NET · WinUI · MAUI</span>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-server icon-card"></i>
-                    <h4 class="card-title">Maintenance</h4>
-                    <div class="content">
-                        <p>Updates and performance improvements</p>
+                    <div class="card-icon-wrap">
+                        <i class="fa-solid fa-server icon-card"></i>
                     </div>
+                    <h4 class="card-title">APIs & Backend</h4>
+                    <p class="card-desc">REST APIs, integración de bases de datos, despliegue en la nube.</p>
+                    <span class="card-tag">ASP.NET · Azure · SQL</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon-wrap">
+                        <i class="fa-solid fa-wrench icon-card"></i>
+                    </div>
+                    <h4 class="card-title">Maintenance</h4>
+                    <p class="card-desc">Actualizaciones, optimización de rendimiento y soporte técnico.</p>
+                    <span class="card-tag">Support · Refactor</span>
                 </div>
             </div>
         </section>
 
         <article id="about-us" class="articulo">
-            <h2 class="titulo-seccion">ABOUT US</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto;">
-                Experts in transforming analog processes into high-impact digital experiences.
-            </p>
+            <div class="seccion-header">
+                <span class="seccion-num">02</span>
+                <h2 class="titulo-seccion">ABOUT US</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-texto">
+                    <p class="about-lead">Expertos en transformar procesos analógicos en experiencias digitales de alto impacto.</p>
+                    <p class="about-body">Combinamos ingeniería sólida con diseño cuidado para construir productos que realmente funcionan. Cada proyecto es tratado con precisión técnica y atención al detalle.</p>
+                </div>
+                <div class="about-skills">
+                    <div class="skill-item">
+                        <span class="skill-name">Frontend</span>
+                        <div class="skill-bar"><div class="skill-fill" style="--w: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Backend / APIs</span>
+                        <div class="skill-bar"><div class="skill-fill" style="--w: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Desktop Apps</span>
+                        <div class="skill-bar"><div class="skill-fill" style="--w: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Game Dev</span>
+                        <div class="skill-bar"><div class="skill-fill" style="--w: 60%"></div></div>
+                    </div>
+                </div>
+            </div>
         </article>
-        
+
         <article id="contact" class="articulo">
-            <h2 class="titulo-seccion">CONTACT</h2>
+            <div class="seccion-header">
+                <span class="seccion-num">03</span>
+                <h2 class="titulo-seccion">CONTACT</h2>
+            </div>
+            <p class="contact-sub">¿Tienes un proyecto en mente? Hablemos.</p>
             <div id="enlaces">
-                <div class="card" onclick="irGithub()">
-                    <p><i class="fa-brands fa-github"></i><br>GITHUB</p>
+                <div class="card contact-card" onclick="irGithub()">
+                    <i class="fa-brands fa-github contact-icon"></i>
+                    <span class="contact-label">GITHUB</span>
+                    <span class="contact-hint">Ver proyectos →</span>
                 </div>
-                <div class="card" onclick="irInstagram()">
-                    <p><i class="fa-brands fa-instagram"></i><br>INSTAGRAM</p>
+                <div class="card contact-card" onclick="irInstagram()">
+                    <i class="fa-brands fa-instagram contact-icon"></i>
+                    <span class="contact-label">INSTAGRAM</span>
+                    <span class="contact-hint">Seguir →</span>
                 </div>
-                <div class="card" onclick="enviarMail()">
-                    <p><i class="fa-solid fa-envelope"></i><br>MAIL</p>
+                <div class="card contact-card" onclick="enviarMail()">
+                    <i class="fa-solid fa-envelope contact-icon"></i>
+                    <span class="contact-label">MAIL</span>
+                    <span class="contact-hint">Escribir →</span>
                 </div>
             </div>
         </article>
     </main>
+
+    <footer id="footer">
+        <div class="footer-inner">
+            <span id="empresa-footer">JOAD<span class="dot">.</span>Core</span>
+            <span class="footer-copy">© 2025 · Todos los derechos reservados</span>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

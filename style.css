@@ -1,34 +1,50 @@
 :root {
     --primary: #4f46e5;
     --secondary: #a78bfa;
-    --bg-overlay: rgba(10, 10, 20, 0.7);
-    --glass: rgba(255, 255, 255, 0.05);
-    --text: #f8fafc;
+    --accent: #c4b5fd;
+    --bg-overlay: rgba(8, 8, 18, 0.82);
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-hover: rgba(167, 139, 250, 0.08);
+    --text: #f1f5f9;
+    --text-muted: rgba(241, 245, 249, 0.55);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(167, 139, 250, 0.5);
 }
 
-* {
+/* ---- Reset & base ---- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    /* FIX: evita scroll horizontal que exponía el menú off-canvas */
+    overflow-x: hidden;
+}
+
 body {
     color: var(--text);
     font-family: "Rubik", sans-serif;
-    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)),
                 url("IMG/geometric.jpg") no-repeat center center fixed;
     background-size: cover;
     line-height: 1.6;
+    /* FIX: refuerza el corte del overflow en el body también */
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* --- Navigation --- */
+/* ---- Navigation ---- */
 #header-main {
-    padding: 1.5rem 5%;
+    padding: 1.2rem 5%;
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(10, 10, 20, 0.8);
-    backdrop-filter: blur(10px);
+    z-index: 200;
+    background: rgba(8, 8, 18, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 
 .navbar {
@@ -40,173 +56,455 @@ body {
 }
 
 #empresa {
-    font-size: 1.8rem;
+    font-family: "Space Mono", monospace;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--secondary);
+    color: var(--text);
     letter-spacing: -1px;
 }
 
-/* Nav links - visibles en desktop */
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    opacity: 0.85;
-    transition: opacity 0.2s, color 0.2s;
-}
-
-.nav-links a:hover {
-    opacity: 1;
+.dot {
     color: var(--secondary);
 }
 
-/* Burger oculto en desktop */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: var(--secondary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Burger */
 .burger {
     display: none;
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
-    z-index: 101;
+    z-index: 201;
 }
 
 .linea {
     display: block;
-    width: 28px;
-    height: 3px;
+    width: 26px;
+    height: 2px;
     border-radius: 2px;
     background-color: var(--secondary);
-    transition: all 0.4s ease-in-out;
+    transition: all 0.35s ease;
+    transform-origin: center;
 }
 
-/* --- Hero Section --- */
+/* ---- Hero ---- */
+#hero-section {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+}
+
+.hero-tag {
+    font-family: "Space Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--secondary);
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+}
+
 #hero {
-    font-size: clamp(2rem, 5vw, 4rem);
-    text-align: center;
-    padding: 100px 20px;
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
     font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.25s forwards;
 }
 
 .resaltar {
     color: var(--secondary);
-    text-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
+    font-style: italic;
+    font-weight: 300;
 }
 
-/* --- Servicios --- */
-.titulo-seccion {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    letter-spacing: 3px;
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.4s forwards;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background: #6366f1;
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--border-hover);
+    color: var(--secondary);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+}
+
+.btn-ghost:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px);
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.55s forwards;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: "Space Mono", monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--secondary);
 }
 
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+}
+
+/* ---- Secciones generales ---- */
+.articulo {
+    padding: 5rem 10%;
+}
+
+.seccion-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.seccion-num {
+    font-family: "Space Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.titulo-seccion {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--text);
+    position: relative;
+}
+
+.titulo-seccion::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 2px;
+    background: var(--secondary);
+    margin-top: 0.5rem;
+}
+
+/* ---- Cards de servicios ---- */
 .grid-servicios {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
     max-width: 1100px;
-    margin: 0 auto;
 }
 
 .card {
     background: var(--glass);
-    padding: 2.5rem 1.5rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    text-align: center;
-    transition: transform 0.4s ease, border 0.4s ease;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    border-color: var(--secondary);
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    background: var(--glass-hover);
+}
+
+.card-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
 }
 
 .icon-card {
-    font-size: 2.5rem;
+    font-size: 1.3rem;
     color: var(--secondary);
-    margin-bottom: 1.5rem;
 }
 
 .card-title {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--text);
 }
 
-.content p {
-    font-size: 0.95rem;
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.card-tag {
+    font-family: "Space Mono", monospace;
+    font-size: 0.7rem;
+    color: var(--secondary);
+    letter-spacing: 1px;
     opacity: 0.8;
 }
-#enlaces{
+
+/* ---- About Us ---- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1000px;
+}
+
+.about-lead {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.about-body {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.skill-item {
+    margin-bottom: 1.2rem;
+}
+
+.skill-name {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.skill-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    width: var(--w);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 99px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: barIn 1s ease 0.5s forwards;
+}
+
+@keyframes barIn {
+    to { transform: scaleX(1); }
+}
+
+/* ---- Contact ---- */
+.contact-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    margin-top: -1.5rem;
+}
+
+#enlaces {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
+    gap: 1.5rem;
 }
 
-#enlaces div {
+.contact-card {
     flex: 1;
-    border: 2px solid rgb(255, 255, 255);
-    text-align: center;
-    transition: all 0.5s ease;
-}
-
-@keyframes glowing {
-    0% { box-shadow: 0 0 5px rgba(64, 0, 255, 0.2); }
-    50% { 
-        box-shadow: 0 0 20px rgba(64, 0, 255, 0.6); 
-        border: 2px solid white;
-        color: white;
-    }
-    100% { box-shadow: 0 0 5px rgba(64, 0, 255, 0.2); }
-}
-
-#enlaces div:hover {
-    border: 2px solid rgb(64, 0, 255);
-    background-color: rgba(123, 79, 255, 0.436);
-    color: rgb(188, 166, 255);
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem 1rem;
     cursor: pointer;
-    transform: scale(1.05);
-    transition: all 1s ease;
-    animation: glowing 2s infinite;
-}
-/* --- General --- */
-.articulo {
-    padding: 4rem 10%;
+    text-align: center;
 }
 
-/* --- Mobile --- */
+.contact-icon {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.15);
+}
+
+.contact-label {
+    font-family: "Space Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--text);
+}
+
+.contact-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contact-card:hover .contact-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Footer ---- */
+#footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 10%;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#empresa-footer {
+    font-family: "Space Mono", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.footer-copy {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* ---- Animaciones ---- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
-    /* Mostrar burger */
     .burger {
         display: flex;
     }
 
-    /* Menú móvil: overlay de pantalla completa */
+    /* FIX principal: el nav-links sale del viewport a la derecha
+       pero ya no causa scroll porque html/body tienen overflow-x: hidden */
     .nav-links {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 2.5rem;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(10, 10, 20, 0.97);
-        backdrop-filter: blur(15px);
+        background: rgba(8, 8, 18, 0.98);
+        backdrop-filter: blur(20px);
         transform: translateX(100%);
-        transition: transform 0.4s ease;
-        z-index: 100;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 200;
     }
 
     .nav-links.active {
@@ -214,13 +512,12 @@ body {
     }
 
     .nav-links a {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         opacity: 1;
     }
 
-    /* Animación del burger */
     .burger.open .linea:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+        transform: translateY(7px) rotate(45deg);
     }
 
     .burger.open .linea:nth-child(2) {
@@ -229,10 +526,34 @@ body {
     }
 
     .burger.open .linea:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    #hero-section {
+        padding-top: 3rem;
+        min-height: auto;
     }
 
     #hero {
-        padding: 60px 20px;
+        letter-spacing: -1px;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+    }
+
+    .articulo {
+        padding: 3.5rem 6%;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
     }
 }

@@ -4,31 +4,62 @@ function toggleMenu() {
 
     burger.classList.toggle('open');
     navLinks.classList.toggle('active');
+
+    // Bloquear scroll del body cuando el menú está abierto
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
 }
 
-// Cerrar el menú al hacer clic en cualquier link
+function closeMenu() {
+    document.querySelector('.burger').classList.remove('open');
+    document.querySelector('.nav-links').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Cerrar menú al hacer clic en cualquier link
 document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.querySelector('.burger').classList.remove('open');
-        document.querySelector('.nav-links').classList.remove('active');
-    });
+    link.addEventListener('click', closeMenu);
 });
 
+// Cerrar menú al presionar Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+});
+
+// Animación de entrada de las cards al hacer scroll (Intersection Observer)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            entry.target.style.animationDelay = `${i * 0.1}s`;
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+});
+
+// Agregar clase visible
+const style = document.createElement('style');
+style.textContent = '.card.visible { opacity: 1 !important; transform: translateY(0) !important; }';
+document.head.appendChild(style);
+
+// Contacto
 function irInstagram() {
-    window.location.href = "https://www.instagram.com/_joshad_?igsh=MW1oZmhzenM4NGhuMA==";
+    window.open("https://www.instagram.com/_joshad_?igsh=MW1oZmhzenM4NGhuMA==", "_blank");
 }
 
 function irGithub() {
-    window.location.href = "https://github.com/JOAD55";
+    window.open("https://github.com/JOAD55", "_blank");
 }
 
 function enviarMail() {
     const email = "joshuas.salinas@gmail.com";
     const asunto = "Consulta sobre el proyecto";
     const cuerpo = "Hola, me gustaría obtener más información...";
-
-    // Usamos encodeURIComponent para que los espacios y caracteres especiales funcionen bien
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-
-    window.location.href = mailtoLink;
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 }
