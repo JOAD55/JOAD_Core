@@ -21,3 +21,14 @@ function irInstagram() {
 function irGithub() {
     window.location.href = "https://github.com/JOAD55";
 }
+
+function enviarMail() {
+    const email = "joshuas.salinas@gmail.com";
+    const asunto = "Consulta sobre el proyecto";
+    const cuerpo = "Hola, me gustaría obtener más información...";
+
+    // Usamos encodeURIComponent para que los espacios y caracteres especiales funcionen bien
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+    window.location.href = mailtoLink;
+}
