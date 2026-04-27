@@ -50,7 +50,7 @@ document.head.appendChild(style);
 
 // Contacto
 function irInstagram() {
-    window.open("https://www.instagram.com/_joshad_?igsh=MW1oZmhzenM4NGhuMA==", "_blank");
+    window.open("https://www.instagram.com/joad.core", "_blank");
 }
 
 function irGithub() {
@@ -58,7 +58,7 @@ function irGithub() {
 }
 
 function enviarMail() {
-    const email = "joshuas.salinas@gmail.com";
+    const email = "joad.core@outlook.com";
     const asunto = "Consulta sobre el proyecto";
     const cuerpo = "Hola, me gustaría obtener más información...";
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
