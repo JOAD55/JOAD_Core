@@ -459,6 +459,12 @@ body {
     align-items: center;
 }
 
+#empresa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #empresa-footer {
     font-family: "Space Mono", monospace;
     font-size: 1rem;
